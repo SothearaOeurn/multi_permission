@@ -1,7 +1,7 @@
-[![](https://jitpack.io/v/SothearaOeurn/multi_permission.svg)](https://jitpack.io/#SothearaOeurn/multi_permission)
-
 # Request Multi Permission
 This library can request multi permission.
+
+[![](https://jitpack.io/v/SothearaOeurn/multi_permission.svg)](https://jitpack.io/#SothearaOeurn/multi_permission)
 
 ## Installation
 
