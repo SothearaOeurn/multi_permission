@@ -21,6 +21,15 @@ This library can request multi permission.
   }
 ```
 
+## Usage/AndroidManifest
+
+```javascript
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+```
+
 ## Usage/Code
 
 ```javascript
@@ -62,12 +71,5 @@ class MainActivity : AppCompatActivity() {
     }
 }
 ```
-## Usage/AndroidManifest
 
-```javascript
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-```
 
