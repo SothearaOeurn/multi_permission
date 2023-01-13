@@ -21,7 +21,7 @@ This library can request multi permission.
   }
 ```
 
-## Usage/Examples
+## Usage/Code
 
 ```javascript
 package com.example.mypermission
@@ -61,5 +61,13 @@ class MainActivity : AppCompatActivity() {
         permissionsUtils.processPermissionsResult(requestCode, permissions, grantResults)
     }
 }
+```
+## Usage/AndroidManifest
+
+```javascript
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
 
