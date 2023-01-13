@@ -19,7 +19,7 @@ This library can request multi permission.
 2.Add the dependency
 ```bash
   dependencies {
-	      implementation 'com.github.SothearaOeurn:multi_permission:1.0.0'
+	      implementation 'com.github.SothearaOeurn:multi_permission:1.0.1'
   }
 ```
 
