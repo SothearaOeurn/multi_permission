@@ -1,12 +1,10 @@
 package com.example.thearapermission.utils
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
-import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -14,13 +12,14 @@ import androidx.core.content.ContextCompat
 class PermissionUtils(
     private val activity: Activity, private val list: List<String>, private val code: Int
 ) {
+    private var listener: PermissionListener? = null
 
     // Check permissions at runtime
     fun checkPermissions() {
         if (isPermissionsGranted() != PackageManager.PERMISSION_GRANTED) {
-            showAlert()
+            requestPermissions()
         } else {
-            Toast.makeText(activity, "Permissions already granted.", Toast.LENGTH_SHORT).show()
+            listener?.onPermissionGranted()
         }
     }
 
@@ -46,17 +45,6 @@ class PermissionUtils(
         return ""
     }
 
-    // Show alert dialog to request permissions
-    private fun showAlert() {
-        val builder = AlertDialog.Builder(activity)
-        builder.setTitle("Need permissions")
-        builder.setMessage("Some permissions are required to do the task.")
-        builder.setPositiveButton("OK") { _, _ -> requestPermissions() }
-        builder.setNeutralButton("Cancel", null)
-        val dialog = builder.create()
-        dialog.show()
-    }
-
     // Request the permissions at run time
     private fun requestPermissions() {
         val permission = deniedPermission()
@@ -78,15 +66,21 @@ class PermissionUtils(
             }
         }
         return if (result == PackageManager.PERMISSION_GRANTED) {
-            Log.v("check_permission", "true")
             true
         } else {
-            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-            val uri: Uri = Uri.fromParts("package", activity.packageName, null)
-            intent.data = uri
-            activity.startActivity(intent)
-            Log.v("check_permission", "false")
+            listener?.onPermissionDenied()
             false
         }
+    }
+
+    fun openPermission() {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        val uri: Uri = Uri.fromParts("package", activity.packageName, null)
+        intent.data = uri
+        activity.startActivity(intent)
+    }
+
+    fun setPermissionListener(l: PermissionListener) {
+        listener = l
     }
 }
